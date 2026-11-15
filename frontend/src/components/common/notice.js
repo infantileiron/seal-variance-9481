@@ -1,0 +1,1 @@
+export function flash(message,error=false){const n=document.querySelector('#flash');n.textContent=message;n.classList.toggle('error',error);n.hidden=false;clearTimeout(window.flashTimer);window.flashTimer=setTimeout(()=>n.hidden=true,6000);}export const readonly=()=>'<p class=notice>当前账号可查看原始记录与评议结果。新增和修订由工艺工程师执行。</p>';

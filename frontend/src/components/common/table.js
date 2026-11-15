@@ -1,0 +1,1 @@
+export const table=(head,rows)=>`<div class=table-scroll><table><thead><tr>${head.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${rows.length?rows.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join('')}</tr>`).join(''):`<tr><td colspan=${head.length} class=empty>暂无记录，先从右侧录入业务数据。</td></tr>`}</tbody></table></div>`;

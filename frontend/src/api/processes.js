@@ -1,0 +1,1 @@
+import{request,post}from'./client.js';export const list=()=>request('/processes');export const save=(data,id)=>id?request('/processes/'+id,{method:'PUT',body:JSON.stringify(data)}):post('/processes',data);

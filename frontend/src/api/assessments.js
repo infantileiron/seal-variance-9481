@@ -1,0 +1,1 @@
+import{request,post}from'./client.js';export const list=()=>request('/assessments');export const create=data=>post('/assessments',data);export const recommend=(id,data)=>request('/assessments/'+id+'/recommendation',{method:'PATCH',body:JSON.stringify(data)});export const approve=id=>post('/assessments/'+id+'/approve',{});

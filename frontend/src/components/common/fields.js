@@ -1,0 +1,1 @@
+import{esc}from'../../utils/format.js';export const field=(label,name,type='text',extra='')=>`<label>${label}<input name=${name} type=${type} ${extra}></label>`;export const options=items=>items.map(([value,label])=>`<option value="${esc(value)}">${esc(label)}</option>`).join('');

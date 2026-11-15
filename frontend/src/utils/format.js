@@ -1,0 +1,1 @@
+export const esc=v=>String(v??'—').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));export const num=(v,d=3)=>Number(v).toFixed(d);export const pvalue=v=>v<.0001?Number(v).toExponential(3):Number(v).toFixed(4);
