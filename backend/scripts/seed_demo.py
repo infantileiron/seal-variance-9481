@@ -4,7 +4,8 @@ from sqlalchemy import select,func
 from src.config.database import Base,engine,SessionLocal
 from src.models.entities import User,Process,Sample,Assessment
 from src.utils.security import hash_password
-from src.services.assessments import snapshot_for
+from src.services import assessments
+from src.schemas.business import AssessmentInput
 
 def seed():
     Base.metadata.create_all(engine);rng=random.Random(3105)
@@ -24,6 +25,6 @@ def seed():
         title='HC-1115 三方案首轮复核'
         if not db.scalar(select(Assessment).where(Assessment.title==title)):
             ids=db.scalars(select(Process.id).where(Process.code.in_(['HC-S1','HC-S2','HC-S3'])).order_by(Process.id)).all()
-            db.add(Assessment(title=title,lot='HC-1115',snapshot=snapshot_for(db,ids,'HC-1115'),status='queued',created_at=datetime.now(timezone.utc).isoformat()));db.commit()
+            assessments.create(db,AssessmentInput(title=title,process_ids=list(ids),lot='HC-1115'),'seed@demo.local')
         counts={t.__tablename__:db.scalar(select(func.count()).select_from(t)) for t in [User,Process,Sample,Assessment]};print(json.dumps(counts));return counts
 if __name__=='__main__':seed()
